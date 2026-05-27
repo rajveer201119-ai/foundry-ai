@@ -20,5 +20,14 @@ export async function POST(request: Request) {
   const parsed = requestSchema.safeParse(await request.json().catch(() => ({})));
   if (!parsed.success) return NextResponse.json({ ok: false, data: null, fallback: false, error: "Invalid input" }, { status: 400 });
   const pageSignals = parsed.data.url ? await safeFetchTitle(parsed.data.url) : {};
-  return NextResponse.json(await generateWithFallback("url-analyzer", { ...parsed.data, ...pageSignals }));
+  const result = await generateWithFallback("url-analyzer", { ...parsed.data, ...pageSignals });
+  return NextResponse.json({
+    ...result,
+    data: {
+      ...result.data,
+      livePageSignals: Object.keys(pageSignals).length
+        ? pageSignals
+        : { note: "The page could not be fetched safely, so Foundry used the supplied context." },
+    },
+  });
 }

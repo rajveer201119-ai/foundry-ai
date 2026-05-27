@@ -57,7 +57,11 @@ export function ToolPage({ tool }: { tool: ToolKey }) {
       const json = await response.json();
       if (!json.ok) throw new Error(json.error || "Generation failed");
       setResult(json.data);
-      setNotice(json.fallback ? "Fallback mode returned a usable plan because live AI or scraping was unavailable." : "Generated with live AI.");
+      setNotice(
+        json.fallback
+          ? `Fallback mode returned a usable plan because live AI or scraping was unavailable.${json.error ? ` Reason: ${json.error}` : ""}`
+          : "Generated with live AI.",
+      );
     } catch (error) {
       setNotice(error instanceof Error ? error.message : "Something went wrong.");
     } finally {
