@@ -14,7 +14,7 @@ function renderValue(value: unknown): React.ReactNode {
     return (
       <ul className="space-y-2">
         {value.map((item, index) => (
-          <li key={index} className="rounded-md border border-white/10 bg-slate-950/50 p-3 text-sm text-slate-200">
+          <li key={index} className="rounded-xl border border-white/10 bg-white/[0.055] p-3 text-sm text-slate-200 shadow-inner shadow-white/5">
             {typeof item === "object" ? renderValue(item) : String(item)}
           </li>
         ))}
@@ -90,16 +90,16 @@ export function ToolPage({ tool }: { tool: ToolKey }) {
   }
 
   return (
-    <main className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[0.9fr_1.1fr]">
+    <main className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[0.88fr_1.12fr]">
       <section>
-        <p className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-200">{config.eyebrow}</p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">{config.title}</h1>
-        <p className="mt-4 max-w-2xl text-slate-300">{config.description}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.34em] text-cyan-200/90">{config.eyebrow}</p>
+        <h1 className="text-balance mt-4 text-4xl font-semibold tracking-[-0.055em] text-white md:text-6xl">{config.title}</h1>
+        <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">{config.description}</p>
         <Card className="mt-8">
           <CardContent className="space-y-4">
             {config.fields.map(([key, label, placeholder]) => (
               <label key={key} className="block">
-                <span className="mb-2 block text-sm text-slate-300">{label}</span>
+                <span className="mb-2 block text-sm font-medium text-slate-300">{label}</span>
                 {key === "idea" || key === "problem" || key === "constraints" ? (
                   <Textarea value={form[key] || ""} placeholder={placeholder} onChange={(event) => setForm({ ...form, [key]: event.target.value })} />
                 ) : (
@@ -117,7 +117,7 @@ export function ToolPage({ tool }: { tool: ToolKey }) {
                 Save
               </Button>
             </div>
-            {notice ? <p className="rounded-md border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm text-cyan-100">{notice}</p> : null}
+            {notice ? <p className="rounded-xl border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-cyan-100 shadow-inner shadow-cyan-300/10">{notice}</p> : null}
           </CardContent>
         </Card>
       </section>
@@ -137,14 +137,14 @@ export function ToolPage({ tool }: { tool: ToolKey }) {
                   </Button>
                 </div>
                 {Object.entries(result).map(([key, value]) => (
-                  <div key={key} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
-                    <h2 className="mb-3 text-lg font-semibold capitalize text-white">{key.replace(/([A-Z])/g, " $1")}</h2>
+                  <div key={key} className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 shadow-inner shadow-white/5">
+                    <h2 className="mb-3 text-lg font-semibold capitalize tracking-tight text-white">{key.replace(/([A-Z])/g, " $1")}</h2>
                     {renderValue(value)}
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="grid min-h-[380px] place-items-center rounded-lg border border-dashed border-white/10 text-center">
+              <div className="grid min-h-[380px] place-items-center rounded-2xl border border-dashed border-white/15 bg-white/[0.035] text-center">
                 <div>
                   <p className="text-lg font-medium text-white">No output yet</p>
                   <p className="mt-2 max-w-sm text-sm text-slate-400">Run the generator to create a practical founder execution brief.</p>

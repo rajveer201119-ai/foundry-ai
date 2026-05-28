@@ -28,7 +28,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   return (
     <Card className="mx-auto mt-16 max-w-md">
       <CardContent className="space-y-4">
-        <h1 className="text-3xl font-semibold text-white">{mode === "login" ? "Log in" : "Create account"}</h1>
+        <h1 className="text-4xl font-semibold tracking-[-0.055em] text-white">{mode === "login" ? "Log in" : "Create account"}</h1>
         <Input type="email" placeholder="founder@example.com" value={email} onChange={(event) => setEmail(event.target.value)} />
         <Input type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
         <Button className="w-full" onClick={submit}>{mode === "login" ? "Log in" : "Sign up"}</Button>

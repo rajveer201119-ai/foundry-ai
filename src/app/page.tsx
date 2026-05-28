@@ -28,13 +28,14 @@ export default function Home() {
         }}
       />
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Organization", name: "Foundry", url: siteUrl("/") }} />
-      <section className="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-12 px-4 py-16 lg:grid-cols-[1fr_0.9fr]">
+      <section className="relative mx-auto grid min-h-[calc(100vh-65px)] max-w-7xl items-center gap-12 px-4 py-16 lg:grid-cols-[1fr_0.92fr]">
+        <div className="absolute left-4 top-10 hidden h-28 w-28 rounded-full border border-cyan-200/20 bg-cyan-200/10 blur-sm lg:block" />
         <Reveal>
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-sm text-cyan-100">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100 shadow-inner shadow-cyan-200/10 backdrop-blur-xl">
             <Sparkles className="size-4" /> Your AI execution system for building and growing startups.
           </div>
-          <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-            Foundry turns founder chaos into clear execution.
+          <h1 className="text-balance mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.07em] text-white md:text-7xl">
+            Foundry turns founder chaos into precise execution.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             Validate ideas, generate MVP prompts, map SEO strategy, create growth content, and know the exact next action to ship.
@@ -50,23 +51,25 @@ export default function Home() {
         </Reveal>
         <Reveal delay={0.08}>
         <Card className="relative overflow-hidden">
+          <div className="absolute -right-16 -top-16 size-40 rounded-full bg-cyan-300/20 blur-3xl" />
+          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-200/60 to-transparent" />
           <CardContent>
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <p className="text-sm text-cyan-200">Mission control</p>
                 <h2 className="text-2xl font-semibold text-white">Startup operating brief</h2>
               </div>
-              <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-sm text-emerald-200">Live plan</span>
+              <span className="rounded-full border border-emerald-300/20 bg-emerald-400/15 px-3 py-1 text-sm text-emerald-200">Live plan</span>
             </div>
             {["Market score 82", "MVP prompt ready", "14-day launch sprint", "SEO cluster generated"].map((item) => (
-              <div key={item} className="mb-3 flex items-center justify-between rounded-md border border-white/10 bg-slate-950/60 p-4">
+              <div key={item} className="mb-3 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.06] p-4 shadow-inner shadow-white/5">
                 <span className="text-slate-200">{item}</span>
                 <Check className="size-5 text-cyan-200" />
               </div>
             ))}
             <div className="mt-6 grid grid-cols-3 gap-3 text-center">
               {["Validation", "Growth", "Execution"].map((label, index) => (
-                <div key={label} className="rounded-md bg-white/[0.06] p-4">
+                <div key={label} className="rounded-xl border border-white/10 bg-white/[0.07] p-4">
                   <p className="text-3xl font-semibold text-white">{[82, 74, 61][index]}</p>
                   <p className="text-xs text-slate-400">{label}</p>
                 </div>
@@ -80,7 +83,7 @@ export default function Home() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {features.map(([title, copy]) => (
             <Reveal key={title}>
-              <Card>
+              <Card className="h-full">
                 <CardContent>
                   <h3 className="text-lg font-semibold text-white">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-400">{copy}</p>

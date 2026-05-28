@@ -25,8 +25,8 @@ export default async function DashboardPage() {
     <main className="mx-auto max-w-7xl px-4 py-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-cyan-200">Mission control</p>
-          <h1 className="mt-3 text-4xl font-semibold text-white">Founder dashboard</h1>
+          <p className="text-sm font-semibold uppercase tracking-[0.34em] text-cyan-200">Mission control</p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.055em] text-white md:text-6xl">Founder dashboard</h1>
           <p className="mt-3 text-slate-300">Track projects, scores, saved analyses, and next actions from one operating surface.</p>
         </div>
         <Button asChild>
@@ -60,7 +60,7 @@ export default async function DashboardPage() {
           <CardHeader><CardTitle>Saved projects</CardTitle></CardHeader>
           <CardContent className="grid gap-3">
             {["Validate AI founder copilot", "Launch SEO content engine", "Build Reddit acquisition loop"].map((project, index) => (
-              <div key={project} className="flex items-center justify-between rounded-md border border-white/10 bg-slate-950/50 p-4">
+              <div key={project} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.055] p-4 shadow-inner shadow-white/5">
                 <div className="flex items-center gap-3">
                   <FolderKanban className="size-5 text-cyan-200" />
                   <div>
@@ -77,12 +77,12 @@ export default async function DashboardPage() {
           <CardHeader><CardTitle>Recent analyses</CardTitle></CardHeader>
           <CardContent className="space-y-3">
             {(analyses || []).length ? analyses?.map((item) => (
-              <div key={item.id} className="rounded-md border border-white/10 p-3">
+              <div key={item.id} className="rounded-xl border border-white/10 bg-white/[0.045] p-3">
                 <p className="text-sm font-medium text-white">{item.type}</p>
                 <p className="text-xs text-slate-500">{new Date(item.created_at).toLocaleString()}</p>
               </div>
             )) : (
-              <div className="rounded-md border border-dashed border-white/10 p-6 text-center">
+              <div className="rounded-2xl border border-dashed border-white/15 bg-white/[0.035] p-6 text-center">
                 <Clock className="mx-auto size-6 text-slate-500" />
                 <p className="mt-3 text-sm text-slate-400">No saved analyses yet.</p>
               </div>

@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
-  --foreground: #e5eefb;
+  --background: #030713;
+  --foreground: #eff6ff;
+  --glass: rgba(9, 18, 34, 0.58);
+  --glass-bright: rgba(255, 255, 255, 0.1);
+  --line: rgba(255, 255, 255, 0.16);
+  --cyan: #67e8f9;
+  --mint: #8fffd2;
+  --violet: #a5b4fc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-sans: "Satoshi", "Aptos Display", "Segoe UI Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Cascadia Code", "SFMono-Regular", ui-monospace, monospace;
 }
 
 * {
@@ -24,12 +30,72 @@ html {
 body {
   min-height: 100%;
   background:
-    radial-gradient(circle at top left, rgba(34, 211, 238, 0.17), transparent 32rem),
-    radial-gradient(circle at 75% 0%, rgba(99, 102, 241, 0.14), transparent 28rem),
-    linear-gradient(180deg, #020617 0%, #06111f 48%, #020617 100%);
+    radial-gradient(circle at 14% 8%, rgba(103, 232, 249, 0.24), transparent 26rem),
+    radial-gradient(circle at 78% 0%, rgba(165, 180, 252, 0.2), transparent 28rem),
+    radial-gradient(circle at 82% 70%, rgba(143, 255, 210, 0.12), transparent 24rem),
+    linear-gradient(135deg, #030713 0%, #07111f 44%, #030713 100%);
   color: var(--foreground);
+  font-feature-settings: "ss01", "cv01", "kern";
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+body::after {
+  z-index: -1;
+  background:
+    linear-gradient(110deg, transparent 0%, rgba(103, 232, 249, 0.08) 35%, transparent 48%),
+    radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.12), transparent 30rem);
+  animation: aurora-sweep 14s ease-in-out infinite alternate;
 }
 
 ::selection {
   background: rgba(103, 232, 249, 0.3);
+}
+
+.glass-ring {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(103,232,249,0.12), rgba(143,255,210,0.22));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@keyframes aurora-sweep {
+  from {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.08);
+    opacity: 1;
+  }
 }
